@@ -1,0 +1,172 @@
+carzone == JRL foler main project name
+
+govin@Devil_Evil MINGW64 /c/off_webiste
+$ py -m venv env
+
+$ source env/Scripts/activate
+(env)
+ 
+$ pip install django==3.0.7
+
+
+$ django-admin startproject JRL
+(env)
+
+
+govin@Devil_Evil MINGW64 /c/off_webiste/JRL
+$ python manage.py runserver
+
+create pages app 
+govin@Devil_Evil MINGW64 /c/off_webiste/JRL
+$ python manage.py startapp pages
+(env)
+
+go to the setting.py add
+
+INSTALLED_APPS = [
+    'pages.apps.PagesConfig'                 <------------ pages 
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+---------> GIT CODE
+
+git repo -https://github.com/1999devil/off_project.git
+git init
+
+govin@Devil_Evil MINGW64 /c/off_project
+$ git init
+Initialized empty Git repository in C:/off_project/.git/
+(env)
+
+
+govin@Devil_Evil MINGW64 /c/off_project (master)
+$ git config --global user.name "1999devil"
+(env)
+govin@Devil_Evil MINGW64 /c/off_project (master)
+$ git config --global user.email govind.yadav30@gmail.com
+(env)
+
+
+-----------> last 2 cOde above only one time for global git your identitty
+
+
+$ git add -A
+
+govin@Devil_Evil MINGW64 /c/off_project (master)
+$ git remote add origin https://github.com/1999devil/off_project.git
+(env)
+
+govin@Devil_Evil MINGW64 /c/off_project (master)
+$ git push -u origin master                  <----------- to update the files in resp of git
+
+govin@Devil_Evil MINGW64 /c/off_project (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   notes_django.txt
+        modified:   templates/pages/home.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+(env)
+
+govin@Devil_Evil MINGW64 /c/off_project (master)
+$ git add -A
+(env)
+
+govin@Devil_Evil MINGW64 /c/off_project (master)
+$ git commit -m "modified html template"
+[master 9124045] modified html template
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+(env)
+
+govin@Devil_Evil MINGW64 /c/off_project (master)
+$ git push origin master
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (6/6), 527 bytes | 263.00 KiB/s, done.
+Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/1999devil/off_project.git
+   78514bc..9124045  master -> master
+(env)
+ori
+
+
+
+
+
+---------> Git ignore -----> ignore the file which we dont want in git repo eg media files
+
+---->create file .gitignore in off_project
+-------> gitignore.io  in the search than type django
+----> it will take u to -https://www.toptal.com/developers/gitignore/api/django --->copy all the code
+----paste in file .gitingnore
+
+eg create media folder in off project 
+
+----> at the last write folder name /media
+
+
+git add -A
+git status
+git commit -m "modified html template"
+git push -u origin master
+
+----
+In url.py in JRL 
+
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('pages.urls')),
+
+---
+create urls.py in pages(creted app)
+
+from django.urls import path,include
+from . import views
+
+urlpatterns = [
+
+    path('',views.home,name="home"),
+]
+---
+In views.py in pages
+
+from django.shortcuts import render
+
+# Create your views here.
+def home(request):
+    return render(request,"pages/home.html")
+
+---
+setting  in JRL
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['templates'],    <------
+        'APP_DIRS': True,
+
+----
+
+
+
+
+
+
+
+
+
